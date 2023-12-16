@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="post" action="{{ url_for('save') }}" enctype='multipart/form-data'>
+		<fieldset>
+			<legend class="hidden-first">Add New Recipes</legend>
+			<input name="cat" type="hidden" value='recipes'>
+			<input name="modifier" type="hidden" value='recipe_id'>
+			<input name="id" type="hidden" value="{{data[0]}}">
+			<input name="act" type="hidden" value="{{act}}">
+		
+			<label>Name</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="name"
+				value="{{data[1]}}" /><br>
+			<label>Description</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="description"
+				value="{{data[2]}}" /><br>
+			<label>Image</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="image"
+				value="{{data[3]}}" /><br>
+			<label>Creator Id</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="creator_id"
+				value="{{data[4]}}" /><br>
+			<label>Creation Date</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="creation_date"
+				value="{{data[5]}}" /><br><br>
+			<input type="submit" value=" Save " class="btn btn-success">
+		</fieldset>
+	</form>
+{% endblock %}
