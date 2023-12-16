@@ -32,7 +32,7 @@
 	<body>
 		<div class="container">
 			<form action="/login_handler" method="post">
-				<h3>Welcome to Python MAGE</h3>
+				<h3>Welcome to Hungerger Admin Panel</h3>
 				<h4>Sign in</h4>
 
 				{% if error is defined and error != '' %}
@@ -43,10 +43,10 @@
 				</div>
 				{% endif %}
 
-				<label for="inputEmail" class="sr-only">Email address</label>
-				<input type="text" name="email" class="form-control" placeholder="Email address" required autofocus>
+				<label for="username" class="sr-only">Username</label>
+				<input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
 
-				<label for="inputPassword" class="sr-only">Password</label>
+				<label for="password" class="sr-only">Password</label>
 				<input type="password" name="password" class="form-control" placeholder="Password" required>
 
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

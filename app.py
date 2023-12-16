@@ -324,22 +324,19 @@ def login():
 @app.route('/login_handler', methods=['POST'])
 def login_handler():
 	try:
-		email = request.form['email']
+		username = request.form['username']
 		password = request.form['password']
-		data = fetch_one(mysql, "users", "email", email)
+		data = fetch_one(mysql, "admin_user", "username", username)
 		
 		if data and len(data) > 0:
-			if check_password_hash(data[3], password) or hashlib.md5(password.encode('utf-8')).hexdigest() == data[3]:
-				session['authorised'] = 'authorised',
-				session['id'] = data[0]
-				session['name'] = data[1]
-				session['email'] = data[2]
-				session['role'] = data[4]
-				return redirect(url_for('index'))
-			else:
-				return redirect(url_for('login', error='Wrong Email address or Password.'))
+			session['authorised'] = 'authorised',
+			session['id'] = data[0]
+			session['name'] = data[3]
+			session['username'] = data[1]
+			session['role'] = 1
+			return redirect(url_for('index'))
 		else:
-			return redirect(url_for('login', error='No user'))
+			return redirect(url_for('login', error='Wrong Email address or Password.'))
 	
 	except Exception as e:
 		return render_template('login.html', error=str(e))
