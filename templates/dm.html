@@ -2,21 +2,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<a class="btn btn-primary" href="./edit_recipes/add/0">
-		<i class="glyphicon glyphicon-plus-sign"></i> Add New Recipes
+	<a class="btn btn-primary" href="./edit_dm/add/0">
+		<i class="glyphicon glyphicon-plus-sign"></i> Add New Dm
 	</a>
-	<h1>Recipes</h1>
-	<p>This table includes {{table_count}} recipes</p>
+	<h1>Dm</h1>
+	<p>This table includes {{table_count}} dm</p>
 	<table id="sorted" class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th>Rec Id</th>
-				<th>Rec Name</th>
-				<th>Dietary Type</th>
-				<th>Discription</th>
-				<th>Image</th>
-				<th>Creation Date</th>
-				<th>Creator Id</th>
+				<th>Follower Id</th>
+				<th>Following Id</th>
+				<th>Dm Content</th>
 
 				<th>Edit</th>
 				<th>Delete</th>
@@ -29,13 +25,13 @@
 					<td>{{d}}</td>
 				{% endfor %}
 				<td>
-					<a href="./edit_recipes/edit/{{row_data[0]}}">
+					<a href="./edit_dm/edit/{{row_data[0]}}">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 				</td>
 				<td>
 					<a 
-						href="./save?cat=recipes&act=delete&modifier=rec_id&id={{row_data[0]}}"
+						href="./save?cat=dm&act=delete&modifier=follower_id&id={{row_data[0]}}"
 						onclick="return navConfirm(this.href);">
 					<i class="glyphicon glyphicon-trash"></i>
 					</a>

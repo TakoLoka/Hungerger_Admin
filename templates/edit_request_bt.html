@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="post" action="{{ url_for('save') }}" enctype='multipart/form-data'>
+		<fieldset>
+			<legend class="hidden-first">Add New Request_Bt</legend>
+			<input name="cat" type="hidden" value='request_bt'>
+			<input name="modifier" type="hidden" value='requester_id'>
+			<input name="id" type="hidden" value="{{data[0]}}">
+			<input name="act" type="hidden" value="{{act}}">
+		<br>
+			<input type="submit" value=" Save " class="btn btn-success">
+		</fieldset>
+	</form>
+{% endblock %}

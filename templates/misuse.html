@@ -2,21 +2,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<a class="btn btn-primary" href="./edit_recipes/add/0">
-		<i class="glyphicon glyphicon-plus-sign"></i> Add New Recipes
+	<a class="btn btn-primary" href="./edit_misuse/add/0">
+		<i class="glyphicon glyphicon-plus-sign"></i> Add New Misuse
 	</a>
-	<h1>Recipes</h1>
-	<p>This table includes {{table_count}} recipes</p>
+	<h1>Misuse</h1>
+	<p>This table includes {{table_count}} misuse</p>
 	<table id="sorted" class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th>Rec Id</th>
-				<th>Rec Name</th>
-				<th>Dietary Type</th>
-				<th>Discription</th>
-				<th>Image</th>
-				<th>Creation Date</th>
-				<th>Creator Id</th>
+				<th>Reporter Id</th>
+				<th>Misuse Id</th>
+				<th>Misuse Type</th>
+				<th>Misuse Content</th>
+				<th>Replier Admin Id</th>
+				<th>Reply</th>
 
 				<th>Edit</th>
 				<th>Delete</th>
@@ -29,13 +28,13 @@
 					<td>{{d}}</td>
 				{% endfor %}
 				<td>
-					<a href="./edit_recipes/edit/{{row_data[0]}}">
+					<a href="./edit_misuse/edit/{{row_data[0]}}">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 				</td>
 				<td>
 					<a 
-						href="./save?cat=recipes&act=delete&modifier=rec_id&id={{row_data[0]}}"
+						href="./save?cat=misuse&act=delete&modifier=reporter_id&id={{row_data[0]}}"
 						onclick="return navConfirm(this.href);">
 					<i class="glyphicon glyphicon-trash"></i>
 					</a>

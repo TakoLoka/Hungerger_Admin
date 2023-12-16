@@ -39,6 +39,90 @@ def index():
 	return render_template('index.html')
 
 
+@app.route("/admin_user")
+@login_required
+def admin_user():
+	data = fetch_all(mysql, "admin_user")
+	return render_template('admin_user.html', data=data, table_count=len(data))
+
+
+@app.route('/edit_admin_user/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@login_required
+def edit_admin_user(modifier_id, act):
+	if act == "add":
+		return render_template('edit_admin_user.html', data="", act="add")
+	else:
+		data = fetch_one(mysql, "admin_user", "user_id", modifier_id)
+	
+		if data:
+			return render_template('edit_admin_user.html', data=data, act=act)
+		else:
+			return 'Error loading #%s' % modifier_id
+
+
+@app.route("/comments")
+@login_required
+def comments():
+	data = fetch_all(mysql, "comments")
+	return render_template('comments.html', data=data, table_count=len(data))
+
+
+@app.route('/edit_comments/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@login_required
+def edit_comments(modifier_id, act):
+	if act == "add":
+		return render_template('edit_comments.html', data="", act="add")
+	else:
+		data = fetch_one(mysql, "comments", "user_id", modifier_id)
+	
+		if data:
+			return render_template('edit_comments.html', data=data, act=act)
+		else:
+			return 'Error loading #%s' % modifier_id
+
+
+@app.route("/dm")
+@login_required
+def dm():
+	data = fetch_all(mysql, "dm")
+	return render_template('dm.html', data=data, table_count=len(data))
+
+
+@app.route('/edit_dm/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@login_required
+def edit_dm(modifier_id, act):
+	if act == "add":
+		return render_template('edit_dm.html', data="", act="add")
+	else:
+		data = fetch_one(mysql, "dm", "follower_id", modifier_id)
+	
+		if data:
+			return render_template('edit_dm.html', data=data, act=act)
+		else:
+			return 'Error loading #%s' % modifier_id
+
+
+@app.route("/follows")
+@login_required
+def follows():
+	data = fetch_all(mysql, "follows")
+	return render_template('follows.html', data=data, table_count=len(data))
+
+
+@app.route('/edit_follows/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@login_required
+def edit_follows(modifier_id, act):
+	if act == "add":
+		return render_template('edit_follows.html', data="", act="add")
+	else:
+		data = fetch_one(mysql, "follows", "follower_id", modifier_id)
+	
+		if data:
+			return render_template('edit_follows.html', data=data, act=act)
+		else:
+			return 'Error loading #%s' % modifier_id
+
+
 @app.route("/ingredients")
 @login_required
 def ingredients():
@@ -52,10 +136,52 @@ def edit_ingredients(modifier_id, act):
 	if act == "add":
 		return render_template('edit_ingredients.html', data="", act="add")
 	else:
-		data = fetch_one(mysql, "ingredients", "ingredient_id", modifier_id)
+		data = fetch_one(mysql, "ingredients", "ing_id", modifier_id)
 	
 		if data:
 			return render_template('edit_ingredients.html', data=data, act=act)
+		else:
+			return 'Error loading #%s' % modifier_id
+
+
+@app.route("/misuse")
+@login_required
+def misuse():
+	data = fetch_all(mysql, "misuse")
+	return render_template('misuse.html', data=data, table_count=len(data))
+
+
+@app.route('/edit_misuse/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@login_required
+def edit_misuse(modifier_id, act):
+	if act == "add":
+		return render_template('edit_misuse.html', data="", act="add")
+	else:
+		data = fetch_one(mysql, "misuse", "reporter_id", modifier_id)
+	
+		if data:
+			return render_template('edit_misuse.html', data=data, act=act)
+		else:
+			return 'Error loading #%s' % modifier_id
+
+
+@app.route("/rates")
+@login_required
+def rates():
+	data = fetch_all(mysql, "rates")
+	return render_template('rates.html', data=data, table_count=len(data))
+
+
+@app.route('/edit_rates/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@login_required
+def edit_rates(modifier_id, act):
+	if act == "add":
+		return render_template('edit_rates.html', data="", act="add")
+	else:
+		data = fetch_one(mysql, "rates", "user_id", modifier_id)
+	
+		if data:
+			return render_template('edit_rates.html', data=data, act=act)
 		else:
 			return 'Error loading #%s' % modifier_id
 
@@ -73,7 +199,7 @@ def edit_recipes(modifier_id, act):
 	if act == "add":
 		return render_template('edit_recipes.html', data="", act="add")
 	else:
-		data = fetch_one(mysql, "recipes", "recipe_id", modifier_id)
+		data = fetch_one(mysql, "recipes", "rec_id", modifier_id)
 	
 		if data:
 			return render_template('edit_recipes.html', data=data, act=act)
@@ -81,44 +207,86 @@ def edit_recipes(modifier_id, act):
 			return 'Error loading #%s' % modifier_id
 
 
-@app.route("/recipes_ingredients")
+@app.route("/recipes_ingredient")
 @login_required
-def recipes_ingredients():
-	data = fetch_all(mysql, "recipes_ingredients")
-	return render_template('recipes_ingredients.html', data=data, table_count=len(data))
+def recipes_ingredient():
+	data = fetch_all(mysql, "recipes_ingredient")
+	return render_template('recipes_ingredient.html', data=data, table_count=len(data))
 
 
-@app.route('/edit_recipes_ingredients/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@app.route('/edit_recipes_ingredient/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
 @login_required
-def edit_recipes_ingredients(modifier_id, act):
+def edit_recipes_ingredient(modifier_id, act):
 	if act == "add":
-		return render_template('edit_recipes_ingredients.html', data="", act="add")
+		return render_template('edit_recipes_ingredient.html', data="", act="add")
 	else:
-		data = fetch_one(mysql, "recipes_ingredients", "ri_id", modifier_id)
+		data = fetch_one(mysql, "recipes_ingredient", "rec_id", modifier_id)
 	
 		if data:
-			return render_template('edit_recipes_ingredients.html', data=data, act=act)
+			return render_template('edit_recipes_ingredient.html', data=data, act=act)
 		else:
 			return 'Error loading #%s' % modifier_id
 
 
-@app.route("/users")
+@app.route("/reg_user")
 @login_required
-def users():
-	data = fetch_all(mysql, "users")
-	return render_template('users.html', data=data, table_count=len(data))
+def reg_user():
+	data = fetch_all(mysql, "reg_user")
+	return render_template('reg_user.html', data=data, table_count=len(data))
 
 
-@app.route('/edit_users/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@app.route('/edit_reg_user/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
 @login_required
-def edit_users(modifier_id, act):
+def edit_reg_user(modifier_id, act):
 	if act == "add":
-		return render_template('edit_users.html', data="", act="add")
+		return render_template('edit_reg_user.html', data="", act="add")
 	else:
-		data = fetch_one(mysql, "users", "email", modifier_id)
+		data = fetch_one(mysql, "reg_user", "user_id", modifier_id)
 	
 		if data:
-			return render_template('edit_users.html', data=data, act=act)
+			return render_template('edit_reg_user.html', data=data, act=act)
+		else:
+			return 'Error loading #%s' % modifier_id
+
+
+@app.route("/reply_bt")
+@login_required
+def reply_bt():
+	data = fetch_all(mysql, "reply_bt")
+	return render_template('reply_bt.html', data=data, table_count=len(data))
+
+
+@app.route('/edit_reply_bt/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@login_required
+def edit_reply_bt(modifier_id, act):
+	if act == "add":
+		return render_template('edit_reply_bt.html', data="", act="add")
+	else:
+		data = fetch_one(mysql, "reply_bt", "requester_id", modifier_id)
+	
+		if data:
+			return render_template('edit_reply_bt.html', data=data, act=act)
+		else:
+			return 'Error loading #%s' % modifier_id
+
+
+@app.route("/request_bt")
+@login_required
+def request_bt():
+	data = fetch_all(mysql, "request_bt")
+	return render_template('request_bt.html', data=data, table_count=len(data))
+
+
+@app.route('/edit_request_bt/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
+@login_required
+def edit_request_bt(modifier_id, act):
+	if act == "add":
+		return render_template('edit_request_bt.html', data="", act="add")
+	else:
+		data = fetch_one(mysql, "request_bt", "requester_id", modifier_id)
+	
+		if data:
+			return render_template('edit_request_bt.html', data=data, act=act)
 		else:
 			return 'Error loading #%s' % modifier_id
 

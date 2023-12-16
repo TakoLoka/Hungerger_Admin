@@ -4,29 +4,23 @@
 {% block content %}
 	<form method="post" action="{{ url_for('save') }}" enctype='multipart/form-data'>
 		<fieldset>
-			<legend class="hidden-first">Add New Ingredients</legend>
-			<input name="cat" type="hidden" value='ingredients'>
-			<input name="modifier" type="hidden" value='ing_id'>
+			<legend class="hidden-first">Add New Comments</legend>
+			<input name="cat" type="hidden" value='comments'>
+			<input name="modifier" type="hidden" value='user_id'>
 			<input name="id" type="hidden" value="{{data[0]}}">
 			<input name="act" type="hidden" value="{{act}}">
 		
-			<label>Ing Name</label>
+			<label>Comm Date</label>
 			<input 
 				class="form-control" 
 				type="text" 
-				name="ing_name"
-				value="{{data[1]}}" /><br>
-			<label>Price</label>
-			<input 
-				class="form-control" 
-				type="text" 
-				name="price"
+				name="comm_date"
 				value="{{data[2]}}" /><br>
-			<label>Description</label>
+			<label>Comm Content</label>
 			<input 
 				class="form-control" 
 				type="text" 
-				name="description"
+				name="comm_content"
 				value="{{data[3]}}" /><br><br>
 			<input type="submit" value=" Save " class="btn btn-success">
 		</fieldset>

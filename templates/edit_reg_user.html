@@ -1,0 +1,70 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="post" action="{{ url_for('save') }}" enctype='multipart/form-data'>
+		<fieldset>
+			<legend class="hidden-first">Add New Reg_User</legend>
+			<input name="cat" type="hidden" value='reg_user'>
+			<input name="modifier" type="hidden" value='user_id'>
+			<input name="id" type="hidden" value="{{data[0]}}">
+			<input name="act" type="hidden" value="{{act}}">
+		
+			<label>Username</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="username"
+				value="{{data[1]}}" /><br>
+			<label>Email</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="email"
+				value="{{data[2]}}" /><br>
+			<label>First Name</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="first_name"
+				value="{{data[3]}}" /><br>
+			<label>Last Name</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="last_name"
+				value="{{data[4]}}" /><br>
+			<label>Avatar</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="avatar"
+				value="{{data[5]}}" /><br>
+			<label>Password</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="password"
+				value="{{data[6]}}" /><br>
+			<label>User Type</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="user_type"
+				value="{{data[7]}}" /><br>
+			<label>Bio</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="bio"
+				value="{{data[8]}}" /><br>
+			<label>Followers</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="followers"
+				value="{{data[9]}}" /><br><br>
+			<input type="submit" value=" Save " class="btn btn-success">
+		</fieldset>
+	</form>
+{% endblock %}

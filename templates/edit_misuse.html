@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="post" action="{{ url_for('save') }}" enctype='multipart/form-data'>
+		<fieldset>
+			<legend class="hidden-first">Add New Misuse</legend>
+			<input name="cat" type="hidden" value='misuse'>
+			<input name="modifier" type="hidden" value='reporter_id'>
+			<input name="id" type="hidden" value="{{data[0]}}">
+			<input name="act" type="hidden" value="{{act}}">
+		
+			<label>Misuse Type</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="misuse_type"
+				value="{{data[2]}}" /><br>
+			<label>Misuse Content</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="misuse_content"
+				value="{{data[3]}}" /><br>
+			<label>Replier Admin Id</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="replier_admin_id"
+				value="{{data[4]}}" /><br>
+			<label>Reply</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="reply"
+				value="{{data[5]}}" /><br><br>
+			<input type="submit" value=" Save " class="btn btn-success">
+		</fieldset>
+	</form>
+{% endblock %}

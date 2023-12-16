@@ -4,48 +4,54 @@
 {% block content %}
 	<form method="post" action="{{ url_for('save') }}" enctype='multipart/form-data'>
 		<fieldset>
-			<legend class="hidden-first">Add New Recipes</legend>
-			<input name="cat" type="hidden" value='recipes'>
-			<input name="modifier" type="hidden" value='rec_id'>
+			<legend class="hidden-first">Add New Admin_User</legend>
+			<input name="cat" type="hidden" value='admin_user'>
+			<input name="modifier" type="hidden" value='user_id'>
 			<input name="id" type="hidden" value="{{data[0]}}">
 			<input name="act" type="hidden" value="{{act}}">
 		
-			<label>Rec Name</label>
+			<label>Username</label>
 			<input 
 				class="form-control" 
 				type="text" 
-				name="rec_name"
+				name="username"
 				value="{{data[1]}}" /><br>
-			<label>Dietary Type</label>
+			<label>Email</label>
 			<input 
 				class="form-control" 
 				type="text" 
-				name="dietary_type"
+				name="email"
 				value="{{data[2]}}" /><br>
-			<label>Discription</label>
+			<label>First Name</label>
 			<input 
 				class="form-control" 
 				type="text" 
-				name="discription"
+				name="first_name"
 				value="{{data[3]}}" /><br>
-			<label>Image</label>
+			<label>Last Name</label>
 			<input 
 				class="form-control" 
 				type="text" 
-				name="image"
+				name="last_name"
 				value="{{data[4]}}" /><br>
-			<label>Creation Date</label>
+			<label>Avatar</label>
 			<input 
 				class="form-control" 
 				type="text" 
-				name="creation_date"
+				name="avatar"
 				value="{{data[5]}}" /><br>
-			<label>Creator Id</label>
+			<label>Password</label>
 			<input 
 				class="form-control" 
 				type="text" 
-				name="creator_id"
-				value="{{data[6]}}" /><br><br>
+				name="password"
+				value="{{data[6]}}" /><br>
+			<label>User Type</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="user_type"
+				value="{{data[7]}}" /><br><br>
 			<input type="submit" value=" Save " class="btn btn-success">
 		</fieldset>
 	</form>

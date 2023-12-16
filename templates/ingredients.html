@@ -10,10 +10,10 @@
 	<table id="sorted" class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th>Ingredient Id</th>
-				<th>Name</th>
-				<th>Description</th>
+				<th>Ing Id</th>
+				<th>Ing Name</th>
 				<th>Price</th>
+				<th>Description</th>
 
 				<th>Edit</th>
 				<th>Delete</th>
@@ -32,7 +32,7 @@
 				</td>
 				<td>
 					<a 
-						href="./save?cat=ingredients&act=delete&modifier=ingredient_id&id={{row_data[0]}}"
+						href="./save?cat=ingredients&act=delete&modifier=ing_id&id={{row_data[0]}}"
 						onclick="return navConfirm(this.href);">
 					<i class="glyphicon glyphicon-trash"></i>
 					</a>

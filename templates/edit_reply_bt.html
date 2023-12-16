@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="post" action="{{ url_for('save') }}" enctype='multipart/form-data'>
+		<fieldset>
+			<legend class="hidden-first">Add New Reply_Bt</legend>
+			<input name="cat" type="hidden" value='reply_bt'>
+			<input name="modifier" type="hidden" value='requester_id'>
+			<input name="id" type="hidden" value="{{data[0]}}">
+			<input name="act" type="hidden" value="{{act}}">
+		
+			<label>Reply</label>
+			<input 
+				class="form-control" 
+				type="text" 
+				name="reply"
+				value="{{data[2]}}" /><br><br>
+			<input type="submit" value=" Save " class="btn btn-success">
+		</fieldset>
+	</form>
+{% endblock %}
