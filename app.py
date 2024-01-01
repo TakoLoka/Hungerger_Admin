@@ -2,7 +2,6 @@ import hashlib
 from flask import Flask, render_template, request, redirect, session, url_for
 from flaskext.mysql import MySQL
 from functools import wraps
-from werkzeug.security import generate_password_hash, check_password_hash
 from handler import *
 
 app = Flask(__name__)
@@ -207,11 +206,11 @@ def edit_recipes(modifier_id, act):
 			return 'Error loading #%s' % modifier_id
 
 
-@app.route("/recipes_ingredient")
+@app.route("/recipes_ingredients")
 @login_required
-def recipes_ingredient():
-	data = fetch_all(mysql, "recipes_ingredient")
-	return render_template('recipes_ingredient.html', data=data, table_count=len(data))
+def recipes_ingredients():
+	data = fetch_all(mysql, "recipes_ingredients")
+	return render_template('recipes_ingredients.html', data=data, table_count=len(data))
 
 
 @app.route('/edit_recipes_ingredient/<string:act>/<int:modifier_id>', methods=['GET', 'POST'])
@@ -220,7 +219,7 @@ def edit_recipes_ingredient(modifier_id, act):
 	if act == "add":
 		return render_template('edit_recipes_ingredient.html', data="", act="add")
 	else:
-		data = fetch_one(mysql, "recipes_ingredient", "rec_id", modifier_id)
+		data = fetch_one(mysql, "recipes_ingredients", "rec_id", modifier_id)
 	
 		if data:
 			return render_template('edit_recipes_ingredient.html', data=data, act=act)
@@ -298,7 +297,7 @@ def save():
 	if request.method == 'POST':
 		post_data = request.form.to_dict()
 		if 'password' in post_data:
-			post_data['password'] = generate_password_hash(post_data['password']) 
+			post_data['password'] = post_data['password']
 		if post_data['act'] == 'add':
 			cat = post_data['cat']
 			insert_one(mysql, cat, post_data)
@@ -350,4 +349,4 @@ def logout():
 
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(debug=True, port=5001)
